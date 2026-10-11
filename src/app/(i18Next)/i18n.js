@@ -4,6 +4,8 @@ import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 i18n
     .use(Backend)
     .use(LanguageDetector)
@@ -19,6 +21,8 @@ i18n
             caches: ['localStorage', 'cookie'],
         },
         backend: {
-            loadPath: '/locales/{{lng}}/{{ns}}.json',
+            loadPath: `${basePath}/locales/{{lng}}/{{ns}}.json`,
         },
     });
+
+export default i18n;
